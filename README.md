@@ -4,7 +4,6 @@
 
 This API is designed to be clean, easy to extend, and ready to plug into any web or mobile backend. It follows best practices for building modern and secure authentication systems.
 
----
 
 ## ✨ Features
 
@@ -18,7 +17,6 @@ This API is designed to be clean, easy to extend, and ready to plug into any web
 - 🌐 Swagger/OpenAPI documentation
 - 🐳 Dockerized for easy deployment
 
----
 
 ## 🚀 Tech Stack
 
@@ -30,7 +28,6 @@ This API is designed to be clean, easy to extend, and ready to plug into any web
 - Docs: **Swagger (OpenAPI 3.0)**
 - Container: **Docker**
 
----
 
 ## 📂 Project Structure
 
@@ -51,7 +48,6 @@ goauth-jwt-auth-api-golang/
 └── README.md
 ```
 
----
 
 ## ⚙️ Setup Instructions
 
@@ -80,7 +76,6 @@ go run main.go
 
 The server will start on `http://localhost:8000`
 
----
 
 ## 🧪 API Endpoints
 
@@ -93,7 +88,6 @@ The server will start on `http://localhost:8000`
 | GET    | `/protected/user`  | User-only route          | ✅   |
 | GET    | `/protected/admin` | Admin-only route         | ✅   |
 
----
 
 ## 🔐 Authentication Flow
 
@@ -103,7 +97,6 @@ The server will start on `http://localhost:8000`
 4. Use `/refresh` to obtain a new access token
 5. Use `/logout` to invalidate current token
 
----
 
 ## 🐳 Docker Support
 
@@ -114,20 +107,7 @@ docker build -t goauth-api .
 docker run -p 8000:8000 goauth-api
 ```
 
----
 
 ## 📖 API Docs (Swagger)
 
 Serve the `swagger.yaml` with [Swagger UI](https://swagger.io/tools/swagger-ui/) or import into [Postman](https://www.postman.com/).
-
----
-
-## ❤️ Contributing
-
-1. Fork the repo
-2. Create your feature branch (`git checkout -b feature-name`)
-3. Commit changes (`git commit -m 'Add feature'`)
-4. Push to the branch (`git push origin feature-name`)
-5. Open a PR
-
----
