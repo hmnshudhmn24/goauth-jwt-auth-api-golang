@@ -1,44 +1,133 @@
-# 🔒 GoAuth: Lightweight JWT Auth API
+# 🔒 GoAuth: Lightweight JWT Auth API (Golang)
 
-A secure and production-ready user authentication API built in **Go (Golang)** that provides a complete solution for managing users, roles, and sessions using modern best practices. This project uses **JWT tokens** for stateless authentication, **bcrypt** for secure password hashing, and **Redis** to implement token blacklisting for logout functionality.
+**GoAuth** is a production-ready, secure, and minimal authentication API written in **Go (Golang)**. It handles user sign-up, login, logout, and token refresh using **JWT** for stateless authentication, **bcrypt** for secure password hashing, and **Redis** for token blacklisting. The project uses **PostgreSQL** as the primary user data store and **Gorilla Mux** for routing.
 
-It is designed to be minimal, extensible, and easy to deploy in any backend system. Perfect for developers who need a ready-made authentication system with secure login, token refresh, logout, and route protection — all out of the box.
-
-Whether you're building a web app, mobile backend, or microservice, **GoAuth** offers a solid foundation for handling authentication securely and efficiently.
+This API is designed to be clean, easy to extend, and ready to plug into any web or mobile backend. It follows best practices for building modern and secure authentication systems.
 
 ---
 
-## 🚀 Features
+## ✨ Features
 
-- 🔐 **Signup/Login** with hashed password storage  
-- 🔄 **Token refresh** with automatic expiration handling  
-- 🚫 **Logout + Token blacklist** using Redis  
-- 🛡️ **Protected Routes** with middleware  
-- 👤 **User roles** embedded in JWT claims  
-- 🧪 Fully structured for easy testing and expansion  
-
----
-
-## 🛠️ Tech Stack
-
-| Layer             | Tech Used          |
-|------------------|--------------------|
-| Language          | Go (Golang)        |
-| Routing           | Gorilla Mux        |
-| Database          | PostgreSQL         |
-| Token Management  | JWT (HS256)        |
-| Caching/Blacklist | Redis              |
-| Password Hashing  | bcrypt             |
+- ✅ Secure user registration and login
+- 🔑 JWT token-based stateless authentication
+- 🔄 Token refresh mechanism with expiry checks
+- 🚪 Logout using Redis-based token blacklist
+- 👤 Role-based access control (Admin/User)
+- 🔐 Password hashing using bcrypt
+- 🧩 Modular code structure with middleware
+- 🌐 Swagger/OpenAPI documentation
+- 🐳 Dockerized for easy deployment
 
 ---
 
-## 📁 Project Structure
+## 🚀 Tech Stack
 
+- Language: **Go (Golang)**
+- Router: **Gorilla Mux**
+- Database: **PostgreSQL**
+- Auth: **JWT** & **bcrypt**
+- Cache: **Redis** (for blacklisting tokens)
+- Docs: **Swagger (OpenAPI 3.0)**
+- Container: **Docker**
+
+---
+
+## 📂 Project Structure
+
+```
 goauth-jwt-auth-api-golang/
 ├── main.go
-├── go.mod
 ├── Dockerfile
+├── go.mod / go.sum
+├── config/
+├── controllers/
+├── middleware/
+├── models/
+├── routes/
+├── utils/
+├── frontend/
+│   └── index.html
 ├── swagger.yaml
-├── README.md
-└── frontend/
-└── index.html
+└── README.md
+```
+
+---
+
+## ⚙️ Setup Instructions
+
+### 1️⃣ Prerequisites
+
+- Go 1.20+ installed
+- PostgreSQL and Redis running locally or via Docker
+- Git
+
+### 2️⃣ Clone the Repository
+
+```bash
+git clone https://github.com/yourusername/goauth-jwt-auth-api-golang.git
+cd goauth-jwt-auth-api-golang
+```
+
+### 3️⃣ Update Config
+
+Edit the `config/config.go` file to match your DB/Redis credentials.
+
+### 4️⃣ Run the Server
+
+```bash
+go run main.go
+```
+
+The server will start on `http://localhost:8000`
+
+---
+
+## 🧪 API Endpoints
+
+| Method | Endpoint           | Description              | Auth |
+|--------|--------------------|--------------------------|------|
+| POST   | `/signup`          | Register new user        | ❌   |
+| POST   | `/login`           | Login & get tokens       | ❌   |
+| POST   | `/refresh`         | Refresh access token     | ✅   |
+| POST   | `/logout`          | Logout & blacklist token | ✅   |
+| GET    | `/protected/user`  | User-only route          | ✅   |
+| GET    | `/protected/admin` | Admin-only route         | ✅   |
+
+---
+
+## 🔐 Authentication Flow
+
+1. User registers via `/signup`
+2. Logs in via `/login` and gets `access_token` and `refresh_token`
+3. Access protected routes with `Authorization: Bearer <token>`
+4. Use `/refresh` to obtain a new access token
+5. Use `/logout` to invalidate current token
+
+---
+
+## 🐳 Docker Support
+
+Build and run using Docker:
+
+```bash
+docker build -t goauth-api .
+docker run -p 8000:8000 goauth-api
+```
+
+---
+
+## 📖 API Docs (Swagger)
+
+Serve the `swagger.yaml` with [Swagger UI](https://swagger.io/tools/swagger-ui/) or import into [Postman](https://www.postman.com/).
+
+---
+
+## ❤️ Contributing
+
+1. Fork the repo
+2. Create your feature branch (`git checkout -b feature-name`)
+3. Commit changes (`git commit -m 'Add feature'`)
+4. Push to the branch (`git push origin feature-name`)
+5. Open a PR
+
+---
